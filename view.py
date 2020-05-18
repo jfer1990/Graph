@@ -19,9 +19,33 @@ class paintApp():
         self.root.title("Points")
         self.MainCanvas = Canvas(root, width=1000, height=600)
         self.MainCanvas.pack(expand=YES, fill=BOTH)
-        #message = Label(root, text="Click once for create a node, click over two nodes, subsequently to create an edge.")
-        #message.pack(side=BOTTOM)
+        self.message = Label(root, text="Click once for create a node, click over two nodes, subsequently to create an edge.")
+        self.message.pack(side=BOTTOM)
+        self.saveButton = Button(self.root,text="Save")
+        self.saveButton.pack(side=BOTTOM)
+        self.nameFile = ""
     def getCanvas(self):
         return self.MainCanvas
+    """def openInputWindow(self):
+        window = Toplevel(self.root)
+        lab = Label(window,text="Introduzca nombre del archivo")
+        closeButton = Button(window,text="do save!")
+        closeButton.pack(side=BOTTOM)
+        lab.pack(side=TOP)
+        self.nameFile = StringVar()
+        entry = Entry(window,textvariable=self.nameFile)
+        entry.pack()
+        closeButton.bind("<Button-1>",print(self.nameFile.get()))
+
+
+        window.mainloop()
+        """
+
+
+
+
+
+
+
 
 

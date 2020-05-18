@@ -47,7 +47,6 @@ class adjacentList:
             self.adjList.append([node])
             return True
         else:
-            print("camilo")
             return self.isNewNode(node)
     #Precondición: node1 and node2 must be instantiated, returns False when node1 and node2 doesnt already existed
     def createEdge(self,node1, node2):
@@ -66,7 +65,7 @@ class adjacentList:
                 output = output +" - "+ elem.getName()
             output = output + "\n"
             c += 1
-        print(output)
+        return output
     def hashName(self):
         val = chr(ord('a')+self._numOfNodes)
         self._numOfNodes += 1
