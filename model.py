@@ -3,6 +3,7 @@ class Node:
         self._pos = pos
         self._name = name
         self._rad = 12
+
     def getPos(self):
         return self._pos
     def getRad(self):
@@ -38,8 +39,10 @@ class adjacentList:
             if distAB <= 2*node.getRad():
                 return each
         return True
+
     def getAdjacentList(self):
         return self.adjList
+
 
     #Return True if node was added succesfully, otherwise returns False
     def addNode(self,node):

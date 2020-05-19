@@ -28,6 +28,7 @@ class Controller:
         x2, y2 = (h + rad), (k + rad)
         self.w.create_oval(x1, y1, x2, y2, fill=python_green)
         self.w.create_text(h,k,font=("Pursia",19),text=node.getName(),fill='white')
+
         return [(h, k, rad)]
 
     def paintEdge(self,node1, node2):
@@ -61,6 +62,7 @@ class Controller:
         f = open("listaAdyacencia.txt", "w+")
         f.write(self.model.printAdjacentList())
         self.view.windowAdjacent(self.model.getAdjacentList())
+
 
 
 

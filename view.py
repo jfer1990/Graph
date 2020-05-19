@@ -40,6 +40,7 @@ class paintApp():
 
         window.mainloop()
         """
+
     def windowAdjacent(self,adjacentList):
         window = Toplevel(self.root)
         window.title("Adjacency list")
@@ -54,7 +55,6 @@ class paintApp():
                 y += 1
             x += 1
             y = 0
-
 
 
 
