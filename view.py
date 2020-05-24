@@ -40,19 +40,21 @@ class paintApp():
 
         window.mainloop()
         """
-
+    #Precondicion, adjacentList debe ser un diccionario
     def windowAdjacent(self,adjacentList):
         window = Toplevel(self.root)
         window.title("Adjacency list")
         x = 0
         y = 0
 
-        for i in adjacentList:
-            for j in adjacentList[x]:
-                e = Entry(window, width=20, fg='blue', font=('Arial', 16, 'bold'))
-                e.grid(row=x,column=y)
-                e.insert(END,j.getName())
-                y += 1
+        for key,list in adjacentList.items():
+            out = key+" => "
+            e = Entry(window, width=0, fg='blue', font=('Arial', 16, 'bold'),justify='left')
+            e.grid(sticky=W, row=x, column=1)
+            for node in list:
+                out = out+node.getName()+" - "
+                y +=1
+            e.insert(END, out)
             x += 1
             y = 0
 

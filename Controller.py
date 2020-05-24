@@ -27,7 +27,7 @@ class Controller:
         x1, y1 = (h - rad), (k - rad)
         x2, y2 = (h + rad), (k + rad)
         self.w.create_oval(x1, y1, x2, y2, fill=python_green)
-        self.w.create_text(h,k,font=("Pursia",19),text=node.getName(),fill='white')
+        self.w.create_text(h,k,font=("Pursia",13),text=node.getName(),fill='white')
 
         return [(h, k, rad)]
 
@@ -38,13 +38,13 @@ class Controller:
 
 
     def controller(self,event):
-        aux = Node(Position(event.x,event.y),self.model.hashName())
+        aux = Node(Position(event.x,event.y),self.model.nodeName())
         nuevoNodo = self.model.addNode(aux) #Si envia True, ya se agregó y creo el nuevo Nodo
         if nuevoNodo == True:
             self.paintNode(aux)
             if self.nodeSelected1 != None:
                 self.model.createEdge(self.nodeSelected1,aux)
-                self.model.createEdge(aux, self.nodeSelected1)
+     #           self.model.createEdge(aux, self.nodeSelected1)
                 self.paintEdge(self.nodeSelected1,aux)
                 self.nodeSelected1 = None
             return True
@@ -53,13 +53,14 @@ class Controller:
             return True
         else:
             self.model.createEdge(self.nodeSelected1,nuevoNodo)
-            self.model.createEdge(nuevoNodo,self.nodeSelected1)
+    #        self.model.createEdge(nuevoNodo,self.nodeSelected1)
             self.paintEdge(nuevoNodo,self.nodeSelected1)
             self.nodeSelected1 = None
             return True
         return False
     def save(self,event):
         f = open("listaAdyacencia.txt", "w+")
+        print(self.model.getAdjacentList())
         f.write(self.model.printAdjacentList())
         self.view.windowAdjacent(self.model.getAdjacentList())
 
@@ -68,7 +69,7 @@ class Controller:
 
 
 
-c = Controller(adjacentList())
+c = Controller(Graphs())
 c.run()
 
 

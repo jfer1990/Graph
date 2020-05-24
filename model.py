@@ -2,7 +2,7 @@ class Node:
     def __init__(self,pos,name):
         self._pos = pos
         self._name = name
-        self._rad = 12
+        self._rad = 14
 
     def getPos(self):
         return self._pos
@@ -25,10 +25,10 @@ class Position:
         return self._y
 
 
-class adjacentList:
+class Graphs:
     def __init__(self):
         self.nodeList = []
-        self.adjList = []
+        self.adjList = {}
         self._numOfNodes = 0
     def isNewNode(self,node):
         h,k = (node.getPos().getX()),(node.getPos().getY())
@@ -49,32 +49,53 @@ class adjacentList:
         x = True if self.isNewNode(node) == True else False
         if x:
             self.nodeList.append(node)
-            self.adjList.append([node])
+#            self.adjList.append([node])
             return True
         else:
             return self.isNewNode(node)
     #Precondición: node1 and node2 must be instantiated, returns False when node1 and node2 doesnt already existed
-    def createEdge(self,node1, node2):
-        pos = -1
-        for each in self.nodeList:
-            pos += 1
-            if each == node1:
-                self.adjList[pos] = self.adjList[pos] + [node2]
-                return True
-        return False
+    #def createEdge(self,node1, node2):
+     #   pos = -1
+      #  for each in self.nodeList:
+       #     pos += 1
+        #    if each == node1:
+         #       self.adjList[pos] = self.adjList[pos] + [node2]
+          #      return True
+        #return False
+    def createEdge(self,node1,node2):
+        k1 = node1.getName()
+        k2 = node2.getName()
+        if self.adjList.get(k1) != None:
+            aux = self.adjList.get(k1) + [node2]
+            self.adjList.update({k1:aux})
+        else:
+            self.adjList.update({k1:[node2]})
+
+        if self.adjList.get(k2) != None:
+            aux = self.adjList.get(k2) + [node1]
+            self.adjList.update({k2:aux})
+        else:
+            self.adjList.update({k2:[node1]})
+
+
     def printAdjacentList(self):
         c = 0
-        output = ""
-        for each in self.adjList:
-            for elem in self.adjList[c]:
+        file = ""
+        for key,list in self.adjList.items():
+            output = key+"  ->"
+            for elem in list:
                 output = output +" - "+ elem.getName()
             output = output + "\n"
+            file = file+output
             c += 1
-        return output
-    def hashName(self):
-        val = chr(ord('a')+self._numOfNodes)
+        return file
+    def nodeName(self):
+        val = "v"+str(self._numOfNodes)
         self._numOfNodes += 1
         return val
+    def getNumNode(self,node):
+        return node.getName()[len(node.getName())-1]
+
 
 
 
