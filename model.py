@@ -49,7 +49,6 @@ class Graphs:
         x = True if self.isNewNode(node) == True else False
         if x:
             self.nodeList.append(node)
-#            self.adjList.append([node])
             return True
         else:
             return self.isNewNode(node)
@@ -63,19 +62,24 @@ class Graphs:
           #      return True
         #return False
     def createEdge(self,node1,node2):
-        k1 = node1.getName()
-        k2 = node2.getName()
-        if self.adjList.get(k1) != None:
-            aux = self.adjList.get(k1) + [node2]
-            self.adjList.update({k1:aux})
+        if node1 == None:
+            self.adjList.update({node2.getName():[]})
+        elif node2== None:
+            self.adjList.update({node1.getName():[]})
         else:
-            self.adjList.update({k1:[node2]})
+            k1 = node1.getName()
+            k2 = node2.getName()
+            if self.adjList.get(k1) != None:
+                aux = self.adjList.get(k1) + [node2]
+                self.adjList.update({k1:aux})
+            else:
+                self.adjList.update({k1:[node2]})
 
-        if self.adjList.get(k2) != None:
-            aux = self.adjList.get(k2) + [node1]
-            self.adjList.update({k2:aux})
-        else:
-            self.adjList.update({k2:[node1]})
+            if self.adjList.get(k2) != None:
+                aux = self.adjList.get(k2) + [node1]
+                self.adjList.update({k2:aux})
+            else:
+                self.adjList.update({k2:[node1]})
 
 
     def printAdjacentList(self):
@@ -95,6 +99,7 @@ class Graphs:
         return val
     def getNumNode(self,node):
         return node.getName()[len(node.getName())-1]
+
 
 
 

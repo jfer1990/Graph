@@ -41,6 +41,7 @@ class Controller:
         aux = Node(Position(event.x,event.y),self.model.nodeName())
         nuevoNodo = self.model.addNode(aux) #Si envia True, ya se agregó y creo el nuevo Nodo
         if nuevoNodo == True:
+            self.model.createEdge(None,aux)
             self.paintNode(aux)
             if self.nodeSelected1 != None:
                 self.model.createEdge(self.nodeSelected1,aux)
