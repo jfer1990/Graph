@@ -1,5 +1,16 @@
-class Node:
+from math import inf
+from _collections import deque
+
+class Vertex:
+    def __init__(self):
+        self.color = None
+        self.distance = None
+        self.parent = None
+
+
+class Node(Vertex):
     def __init__(self,pos,name):
+        super().__init__()
         self._pos = pos
         self._name = name
         self._rad = 14
@@ -99,6 +110,39 @@ class Graphs:
         return val
     def getNumNode(self,node):
         return node.getName()[len(node.getName())-1]
+    def BFS_Tree(self):
+        vertexList = []
+        edgesList = []
+        for v in self.nodeList[1:]:
+            v.distance = inf
+            v.parent = None
+            v.color = "white"
+            vertexList.append(v)
+        s = self.nodeList[0]
+        s.parent = None
+        s.color = "gray"
+        s.distance = 0
+        Q = deque()
+        Q.append(s) #instead of enqueue
+        while(Q.__len__()>0):
+            u = Q.popleft() #instead of dequeue
+            adjNodesVector = self.adjList.get(u.getName())
+            for v in adjNodesVector:
+                if v.color.casefold() == "white".casefold():
+                    edgesList.append((u,v))
+                    v.color = "gray"
+                    v.distance = u.distance + 1
+                    v.parent = u
+                    Q.append(v)
+            u.color = "black"
+
+        for u,v in edgesList:
+            print(u.getName()+"~"+v.getName())
+
+
+
+
+
 
 
 

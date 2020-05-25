@@ -64,6 +64,7 @@ class Controller:
         print(self.model.getAdjacentList())
         f.write(self.model.printAdjacentList())
         self.view.windowAdjacent(self.model.getAdjacentList())
+        self.model.BFS_Tree()
 
 
 
