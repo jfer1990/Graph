@@ -8,8 +8,9 @@ class Controller:
         self.model = model
         self.view = paintApp(self.root)
         self.w = self.view.MainCanvas
-        self.view.MainCanvas.bind("<Button-1>", self.controller)
+        self.w.bind("<Button-1>", self.controller)
         self.view.saveButton.bind("<Button-1>",self.save)
+        self.view.BFSButton.bind("<Button-1>",self.bfs)
         self.nodeSelected1 = None
         self.nodeSelected2 = None
 
@@ -65,6 +66,10 @@ class Controller:
         f.write(self.model.printAdjacentList())
         self.view.windowAdjacent(self.model.getAdjacentList())
         self.model.BFS_Tree()
+    def bfs(self,event):
+        lista = self.model.BFS_Tree()
+        self.view.windowBFS(lista)
+
 
 
 

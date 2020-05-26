@@ -138,6 +138,7 @@ class Graphs:
 
         for u,v in edgesList:
             print(u.getName()+"~"+v.getName())
+        return edgesList
 
 
 
